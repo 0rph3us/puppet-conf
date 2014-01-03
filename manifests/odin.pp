@@ -2,9 +2,9 @@
 node default {
     include stdlib
     
-    $packages = [ 'ntp', 'htop', 'vim-puppet']
+    $packages = [ 'ntp', 'htop', 'vim-puppet', 'puppet', 'puppet-common']
     package { $packages: 
-        ensure => 'installed'
+        ensure  => 'latest',
     }
 
     file { '/var/lib/vim/addons/syntax/':
@@ -53,8 +53,9 @@ node default {
 
     apt::source { 'puppetlabs':
         location   => 'http://apt.puppetlabs.com',
-        repos      => 'main',
+        repos      => 'main dependencies',
         key        => '4BD6EC30',
         key_server => 'pgp.mit.edu',
+	pin        => 400,
     }
 }
