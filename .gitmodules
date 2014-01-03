@@ -1,0 +1,3 @@
+[submodule "modules/anacron"]
+	path = modules/anacron
+	url = git@github.com:0rph3us/puppet-anacron.git
