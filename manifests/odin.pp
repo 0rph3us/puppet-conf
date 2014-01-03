@@ -2,7 +2,7 @@
 node default {
     include stdlib
     
-    $packages = [ 'ntp', 'htop', 'vim-puppet', 'puppet', 'puppet-common']
+    $packages = [ 'ntp', 'htop', 'vim-puppet', 'puppet', 'puppet-common', 'ethtool']
     package { $packages: 
         ensure  => 'latest',
         require => Apt::Source['puppetlabs'],
@@ -43,7 +43,7 @@ node default {
                 command => '/usr/sbin/batched_discard',
                 comment => 'weekly trim',
                 delay   => 5,
-                period  => '@weekly',
+                period  => 7,
             }
         }
     }
@@ -59,4 +59,20 @@ node default {
         key_server => 'pgp.mit.edu',
 	    pin        => 1000,
     }
+
+#    udev::rule { 'hd_power_save.rules':
+#	ensure  => present,
+#	content => 'SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="min_power"',
+#    }
+
+    udev::rule { 'pci_pm.rules':
+	ensure  => present,
+	content => 'SUBSYSTEM=="pci", ATTR{power/control}="auto"',
+    }
+
+#    udev::rule { 'disable_wol.rules':
+#	ensure  => present,
+#	content => 'SUBSYSTEM=="net", KERNEL=="eth*", RUN+="/sbin/ethtool -s %k wol d"',
+#	require => Package['ethtool'],
+#    }
 }
