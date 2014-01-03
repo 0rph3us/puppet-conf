@@ -1,5 +1,6 @@
 
 node default {
+    include stdlib
     
     $packages = [ 'ntp', 'htop', 'vim-puppet']
     package { $packages: 
@@ -44,5 +45,16 @@ node default {
                 period  => '@weekly',
             }
         }
+    }
+
+    class { 'apt':
+        update_timeout => 300,
+    }
+
+    apt::source { 'puppetlabs':
+        location   => 'http://apt.puppetlabs.com',
+        repos      => 'main',
+        key        => '4BD6EC30',
+        key_server => 'pgp.mit.edu',
     }
 }
