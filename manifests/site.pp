@@ -1,7 +1,6 @@
-
-node default {
+node 'common' {
     include stdlib
-    
+
     $packages = [ 'ntp', 'htop', 'vim-puppet', 'puppet', 'puppet-common', 'ethtool']
     package { $packages: 
         ensure  => 'latest',
@@ -59,6 +58,10 @@ node default {
         key_server => 'pgp.mit.edu',
 	    pin        => 1000,
     }
+}
+
+node /walhalla/ inherits 'common' {
+    
 
 #    udev::rule { 'hd_power_save.rules':
 #	ensure  => present,
@@ -69,6 +72,8 @@ node default {
 	ensure  => present,
 	content => 'SUBSYSTEM=="pci", ATTR{power/control}="auto"',
     }
+
+	notify{'done with walhalla':}
 
 #    udev::rule { 'disable_wol.rules':
 #	ensure  => present,
