@@ -5,6 +5,7 @@ node default {
     $packages = [ 'ntp', 'htop', 'vim-puppet', 'puppet', 'puppet-common']
     package { $packages: 
         ensure  => 'latest',
+        require => Apt::Source['puppetlabs'],
     }
 
     file { '/var/lib/vim/addons/syntax/':
@@ -56,6 +57,6 @@ node default {
         repos      => 'main dependencies',
         key        => '4BD6EC30',
         key_server => 'pgp.mit.edu',
-	pin        => 400,
+	    pin        => 1000,
     }
 }
