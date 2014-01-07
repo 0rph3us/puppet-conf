@@ -23,3 +23,7 @@ node /walhalla/ inherits 'common' {
 #	require => Package['ethtool'],
 #    }
 }
+
+node /odin/ inherits 'common' {
+    notify{'done with odin':}
+}
