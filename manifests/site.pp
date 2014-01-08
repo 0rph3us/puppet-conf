@@ -25,5 +25,10 @@ node /walhalla/ inherits 'common' {
 }
 
 node /odin/ inherits 'common' {
+    
+    host { 'puppet':
+        ip => '127.0.0.1',
+    }
+
     notify{'done with odin':}
 }
