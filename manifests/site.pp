@@ -1,5 +1,5 @@
 node 'common' {
-    include common
+    class {'common': }
 }
 
 node /walhalla/ inherits 'common' {
