@@ -1,9 +1,10 @@
-forge "http://forge.puppetlabs.com"
+forge 'http://forge.puppetlabs.com'
 
-mod "puppetlabs/apt"
-mod "puppetlabs/ntp"
-mod "puppetlabs/stdlib"
-mod "acme/ohmyzsh"
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/mongodb'
+mod 'puppetlabs/apt'
+mod 'puppetlabs/ntp'
+mod 'acme/ohmyzsh'
 
 
 mod 'udev',
