@@ -30,5 +30,5 @@ node /odin/ inherits 'common' {
         ip => '127.0.0.1',
     }
 
-    notify{'done with odin':}
+    include common::install_mongo
 }
